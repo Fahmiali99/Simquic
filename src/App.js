@@ -14,7 +14,7 @@ function App() {
   }
   return (
     <div className="h-auto sm:h-auto container mx-auto bg-slate-200 py-20">
-      <div className="lg:mx-64 bg-orange-100 py-6 px-8">
+      <div className="lg:mx-64 border-2 rounded-lg py-6 px-8">
         <div className="bg-white">
           <Routes>
             <Route path="/" element={<LandingPage />} />

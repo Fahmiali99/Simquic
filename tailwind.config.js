@@ -2,7 +2,16 @@
 module.exports = {
   content: ["./src/**/*.{html,js}", "./node_modules/flowbite/**/*.js"],
   theme: {
-    extend: {},
+    extend: {
+      margin: {
+        "22px": "22px",
+      },
+      fontSize: {
+        ss: "12px",
+        mm: "14px",
+        ll: "16px",
+      },
+    },
     colors: {
       transparent: "transparent",
       current: "currentColor",
