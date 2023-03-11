@@ -5,6 +5,7 @@ import LandingPage from "./Pages/LandingPage";
 import InboxPage from "./Pages/InboxPage";
 import TaskPage from "./Pages/TaskPage";
 import { useState } from "react";
+import InChating from "./Pages/InboxPage/Detail/inChating";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -12,16 +13,20 @@ function App() {
   function toggleOpen() {
     setOpen(!open);
   }
+
   return (
-    <div className="h-auto sm:h-auto container mx-auto bg-slate-200 py-20">
-      <div className="lg:mx-64 border-2 rounded-lg py-6 px-8">
-        <div className="bg-white">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/inbox" element={<InboxPage />} />
-            <Route path="/task" element={<TaskPage />} />
-          </Routes>
-          <Footer toggleOpen={toggleOpen} open={open} />
+    <div className=" bg-white">
+      <div className="h-auto sm:h-auto container mx-auto bg-slate-200 py-20">
+        <div className="lg:mx-64 border-2 rounded-lg">
+          <div className="">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route exact path="/inbox" element={<InboxPage />} />
+              <Route path="/inbox/:slug" element={<InChating />} />
+              <Route path="/task" element={<TaskPage />} />
+            </Routes>
+            <Footer toggleOpen={toggleOpen} open={open} />
+          </div>
         </div>
       </div>
     </div>

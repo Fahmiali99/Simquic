@@ -17,6 +17,7 @@ function InboxPage() {
   }, [dispatch]);
 
   function filterData(e) {
+    e.preventDefault();
     const filter = inbox.filter((search) => {
       return search.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
@@ -24,12 +25,14 @@ function InboxPage() {
   }
 
   return (
-    <div>
+    <div className="  pt-6 px-8">
       <Searching handleChange={filterData} />
       {search?.length ? (
-        search?.map((item, idx) => (
+        search?.map((item) => (
           <AllInbox
-            key={idx}
+            key={`${item.id} ${item.slug}`}
+            uri_id={item.id}
+            uri_slug={item.slug}
             name={item.name}
             email={item.email}
             body={item.body}

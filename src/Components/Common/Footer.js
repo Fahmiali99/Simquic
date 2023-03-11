@@ -7,7 +7,7 @@ function Footer({ toggleOpen, open }) {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
-    <div className=" flex items-center justify-end">
+    <div className=" flex items-center justify-end pb-6 px-8">
       <div className=" flex items-center ">
         {open && (
           <div

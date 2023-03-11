@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  inbox: {},
+  inbox: [],
 };
 
 export const inbox = createSlice({

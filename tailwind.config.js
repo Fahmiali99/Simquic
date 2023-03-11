@@ -6,6 +6,9 @@ module.exports = {
       margin: {
         "22px": "22px",
       },
+      padding: {
+        "24px": "24px",
+      },
       fontSize: {
         ss: "12px",
         mm: "14px",
