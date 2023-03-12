@@ -79,8 +79,13 @@ function Chating({ postId }) {
                 {chating.map((item) => (
                   <FromMessage
                     key={item.id}
+                    idx={item.id}
                     text={item.text}
                     time={item.time}
+                    selectedMessageId={selectedMessageId}
+                    toggleOpen={toggleOpen}
+                    open={open}
+                    dropdownRef={dropdownRef}
                   />
                 ))}
               </div>

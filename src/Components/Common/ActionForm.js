@@ -1,7 +1,7 @@
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
 
-function ActionsInbox({
+function ActionFrom({
   selectedMessageId,
   toggleOpen,
   open,
@@ -21,7 +21,7 @@ function ActionsInbox({
     },
   ];
   return (
-    <div className="pl-2">
+    <div className="pr-2">
       <button
         onClick={() => toggleOpen(chatIdx)}
         id="dropdownDefaultButton"
@@ -32,10 +32,10 @@ function ActionsInbox({
       </button>
       <div ref={dropdownRef}>
         {open && selectedMessageId === chatIdx && (
-          <div className="relative z-50">
+          <div className="relative z-50 right-40 ">
             <div
               id="dropdown"
-              className={`z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute`}
+              className={`z-10 border bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-700 absolute`}
             >
               {action.map((item, idx) => (
                 <div key={idx} className="py-2">
@@ -56,4 +56,4 @@ function ActionsInbox({
   );
 }
 
-export default ActionsInbox;
+export default ActionFrom;

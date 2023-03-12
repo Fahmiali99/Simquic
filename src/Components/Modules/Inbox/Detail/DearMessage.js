@@ -1,5 +1,5 @@
 import React from "react";
-import ActionsInbox from "../../../Common/ActionsInbox";
+import ActionDear from "../../../Common/ActionDear";
 
 function DearMessage({
   detail,
@@ -35,7 +35,7 @@ function DearMessage({
                 {item.body}
                 <p className="text-ss py-1">{item.time}</p>
               </span>
-              <ActionsInbox
+              <ActionDear
                 selectedMessageId={selectedMessageId}
                 toggleOpen={toggleOpen}
                 open={open}
