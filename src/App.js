@@ -22,7 +22,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route exact path="/inbox" element={<InboxPage />} />
-              <Route path="/inbox/:slug" element={<InChating />} />
+              <Route path="/inbox/:id" element={<InChating />} />
               <Route path="/task" element={<TaskPage />} />
             </Routes>
             <Footer toggleOpen={toggleOpen} open={open} />

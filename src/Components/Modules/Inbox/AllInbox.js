@@ -3,7 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Substring } from "../../Common/Substring";
 import { Link } from "react-router-dom";
 
-function AllInbox({ uri_slug, uri_id, name, email, body }) {
+function AllInbox({ uri_id, name, email, body }) {
   return (
     <Link to={`/inbox/` + uri_id}>
       <div

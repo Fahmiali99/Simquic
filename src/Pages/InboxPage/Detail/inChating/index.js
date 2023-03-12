@@ -3,13 +3,12 @@ import { GrClose } from "react-icons/gr";
 import BackPage from "../../../../Components/Common/BackPage";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Chating from "../../../../Components/Modules/Inbox/Chating";
 
 function InChating() {
-  const params = useParams();
+  const { id } = useParams();
   const { inbox } = useSelector((state) => state.inbox);
-  const tipsSelected = inbox.find((item) => {
-    return item.slug === params.slug;
-  });
+  const chat = inbox.find((item) => item.id === Number(id));
 
   return (
     <div className=" rounded-lg">
@@ -17,14 +16,19 @@ function InChating() {
         <div className="flex">
           <BackPage />
           <div className="pl-5">
-            <h1 className=" text-primaryBlue text-ll">{tipsSelected?.email}</h1>
+            <h1 className=" text-primaryBlue text-ll font-bold">
+              {chat?.email}
+            </h1>
+            <h1 className=" text-ss ">{chat.postId} Participants</h1>
           </div>
         </div>
         <div className="">
           <GrClose className="text-xl" />
         </div>
       </div>
-      <div className="  rounded-lg pt-6 px-8"></div>
+      <div className="  rounded-lg pt-6 px-8">
+        <Chating />
+      </div>
     </div>
   );
 }
