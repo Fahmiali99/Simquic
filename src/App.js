@@ -15,9 +15,9 @@ function App() {
   }
 
   return (
-    <div className=" bg-white">
-      <div className="h-auto sm:h-auto container mx-auto bg-slate-200 py-20">
-        <div className="lg:mx-64 border-2 rounded-lg">
+    <div className=" bg-primaryGray-900 h-screen grid items-center">
+      <div className="  sm:h-auto container mx-auto bg-slate-200 ">
+        <div className="lg:mx-64  ">
           <div className="">
             <Routes>
               <Route path="/" element={<LandingPage />} />

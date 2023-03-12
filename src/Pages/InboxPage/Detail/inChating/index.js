@@ -11,13 +11,13 @@ function InChating() {
   const chat = inbox.find((item) => item.id === Number(id));
 
   return (
-    <div className=" rounded-lg">
+    <div className=" bg-white border-2 rounded-lg pb-6">
       <div className=" flex justify-between items-center shadow w-full py-[24px]  px-8">
         <div className="flex">
           <BackPage />
           <div className="pl-5">
             <h1 className=" text-primaryBlue text-ll font-bold">
-              {chat?.email}
+              {chat?.name}
             </h1>
             <h1 className=" text-ss ">{chat.postId} Participants</h1>
           </div>
@@ -27,7 +27,7 @@ function InChating() {
         </div>
       </div>
       <div className="  rounded-lg pt-6 px-8">
-        <Chating />
+        <Chating chat={chat} postId={chat.postId} />
       </div>
     </div>
   );

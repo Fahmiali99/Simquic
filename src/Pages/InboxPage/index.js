@@ -26,24 +26,25 @@ function InboxPage() {
   }
 
   return (
-    <div className="  pt-6 px-8">
+    <div className="  pt-6 px-8 bg-white border-2 rounded-lg  ">
       <Searching handleChange={filterData} />
-
-      {search?.length ? (
-        search?.map((item) => {
-          return (
-            <AllInbox
-              key={`${item.id} ${item.slug}`}
-              uri_id={item.id}
-              name={item.first_name}
-              email={item.email}
-              body={item.body}
-            />
-          );
-        })
-      ) : (
-        <h1>Inbox is empty</h1>
-      )}
+      <div className="overflow-y-auto" style={{ height: "450px" }}>
+        {search?.length ? (
+          search?.map((item) => {
+            return (
+              <AllInbox
+                key={`${item.id} `}
+                uri_id={item.id}
+                name={item.name}
+                email={item.email}
+                body={item.body}
+              />
+            );
+          })
+        ) : (
+          <h1>Inbox is empty</h1>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,204 +1,117 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { message } from "../../../Utils/message";
+import ActionsInbox from "../../Common/ActionsInbox";
 
-function Chating() {
+function Chating({ postId }) {
+  const [open, setOpen] = useState(false);
+  const [selectedMessageId, setSelectedMessageId] = useState(null);
+  const dropdownRef = useRef(null);
+
+  function toggleOpen(messageId) {
+    setSelectedMessageId(messageId);
+    setOpen(!open);
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [dropdownRef]);
   return (
-    <div>
-      <div className=" justify-between flex flex-col h-screen">
+    <div className=" ">
+      <div className=" justify-between flex flex-col ">
         <div
           id="messages"
           className="flex flex-col space-y-4  overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+          style={{ height: "400px" }}
         >
+          {/* Dear */}
           <div className="chat-message">
-            <div className="flex items-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                    Can be verified on any platform using docker
-                  </span>
+            <div className="">
+              {message.map((item) => {
+                const detail = item.inbox_chat;
+                return (
+                  <div key={item.id}>
+                    <div className=" text-center flex items-center">
+                      <div className=" border-b-2 w-2/5 border-primaryGray-500" />
+                      <h1 className="px-4">
+                        {item.status} {item.month} {item.date}
+                      </h1>
+                      <div className=" border-b-2 w-2/5 border-primaryGray-500" />
+                    </div>
+                    <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                      {detail.slice(0, postId).map((item, idx) => (
+                        <div key={idx}>
+                          <span className="text-mm flex  font-bold py-2   text-gray-600">
+                            {item.name}
+                          </span>
+                          <div className="flex">
+                            <span
+                              className="px-4 py-2 rounded-lg inline-block  text-black "
+                              style={{ background: item.color }}
+                            >
+                              {item.body}
+                              <p className="text-ss py-1">{item.time}</p>
+                            </span>
+                            <ActionsInbox
+                              selectedMessageId={selectedMessageId}
+                              toggleOpen={toggleOpen}
+                              open={open}
+                              chatIdx={idx}
+                              dropdownRef={dropdownRef}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {/* From */}
+            <div className="chat-message">
+              <div className="flex items-end justify-end">
+                <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                  <div>
+                    <span className="text-mm flex justify-end font-bold py-2   text-gray-600">
+                      You
+                    </span>
+                    <span className="px-4 py-2 rounded-lg inline-block bg-stikerViolet text-black ">
+                      Any updates on this issue? I'm getting the same error when
+                      trying to install devtools. Thanks
+                      <p className="text-ss py-1">12:15</p>
+                    </span>
+                  </div>
                 </div>
               </div>
-              <img
-                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-1"
-              />
             </div>
           </div>
+          {/* From */}
           <div className="chat-message">
             <div className="flex items-end justify-end">
               <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                 <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
-                    Your error message says permission denied, npm global
-                    installs must be given root privileges.
+                  <span className="text-mm flex justify-end font-bold py-2   text-gray-600">
+                    You
                   </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-2"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    Command was run with root privileges. I'm sure about that.
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    I've update the description so it's more obviously now
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    FYI https://askubuntu.com/a/700266/510172
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                    Check the line above (it ends with a # so, I'm running it as
-                    root )<pre># npm install -g @vue/devtools</pre>
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-1"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end justify-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
+                  <span className="px-4 py-2 rounded-lg inline-block bg-stikerViolet text-black ">
                     Any updates on this issue? I'm getting the same error when
                     trying to install devtools. Thanks
+                    <p className="text-ss py-1">12:15</p>
                   </span>
                 </div>
               </div>
-              <img
-                src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-2"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                    Thanks for your message David. I thought I'm alone with this
-                    issue. Please, ? the issue to support it :)
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-1"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end justify-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white ">
-                    Are you using sudo?
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
-                    Run this command sudo chown -R `whoami` /Users/
-                    /.npm-global/ then install the package globally without
-                    using sudo
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-2"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    It seems like you are from Mac OS world. There is no /Users/
-                    folder on linux ?
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                    I have no issue with any other packages installed with root
-                    permission globally.
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-1"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end justify-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
-                    yes, I have a mac. I never had issues with root permission
-                    as well, but this helped me to solve the problem
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-2"
-              />
-            </div>
-          </div>
-          <div className="chat-message">
-            <div className="flex items-end">
-              <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    I get the same error on Arch Linux (also with sudo)
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">
-                    I also have this issue, Here is what I was doing until now:
-                    #1076
-                  </span>
-                </div>
-                <div>
-                  <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                    even i am facing
-                  </span>
-                </div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                alt="My profile"
-                className="w-6 h-6 rounded-full order-1"
-              />
             </div>
           </div>
         </div>
-        <div className="  pt-4 mb-2 sm:mb-0">
+        {/* send */}
+        <div className="  pt-4 mb-2 sm:mb-0  ">
           <div className="relative flex">
             <input
               type="text"

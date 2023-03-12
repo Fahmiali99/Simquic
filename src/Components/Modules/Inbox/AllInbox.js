@@ -8,7 +8,7 @@ function AllInbox({ uri_id, name, email, body }) {
     <Link to={`/inbox/` + uri_id}>
       <div
         id="toast-notification"
-        className="w-full my-[22px] text-gray-900 bg-white rounded-lg dark:bg-gray-800 dark:text-gray-300"
+        className="w-full my-[22px]  text-gray-900 bg-white rounded-lg dark:bg-gray-800 dark:text-gray-300"
         role="alert"
       >
         <div>
@@ -27,9 +27,7 @@ function AllInbox({ uri_id, name, email, body }) {
                   <h1 className=" font-bold flex  dark:text-white text-ll text-primaryBlue">
                     {name}
                   </h1>
-                  <span className="text-mm text-black ml-5">
-                    01/06/2021 12:19
-                  </span>
+                  <h1 className="text-mm text-black ml-5">01/06/2021 12:19</h1>
                 </div>
                 <div className=" text-mm font-semibold">{email}</div>
                 <span className=" text-ss ">{Substring(body)}</span>

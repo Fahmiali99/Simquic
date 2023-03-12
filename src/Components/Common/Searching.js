@@ -2,7 +2,7 @@ import React from "react";
 
 function Searching({ handleChange }) {
   return (
-    <form>
+    <form className="">
       <div className="flex">
         <label
           htmlFor="search-dropdown"
