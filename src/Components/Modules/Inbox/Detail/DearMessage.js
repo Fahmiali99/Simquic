@@ -1,7 +1,7 @@
 import React from "react";
 import ActionsInbox from "../../../Common/ActionsInbox";
 
-function MessageComp({
+function DearMessage({
   detail,
   status,
   month,
@@ -50,4 +50,4 @@ function MessageComp({
   );
 }
 
-export default MessageComp;
+export default DearMessage;
