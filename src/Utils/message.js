@@ -91,19 +91,19 @@ export const message = [
       },
     ],
   },
-  {
-    id: 2,
-    status: "New Message",
-    month: null,
-    date: null,
-    inbox_chat: [
-      {
-        id: 1,
-        name: "Ali",
-        body: "Btw, kamu nanti jadi beli makan?",
-        color: "#E9F3FF",
-        time: "12.31",
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   status: "New Message",
+  //   month: null,
+  //   date: null,
+  //   inbox_chat: [
+  //     {
+  //       id: 1,
+  //       name: "Ali",
+  //       body: "Btw, kamu nanti jadi beli makan?",
+  //       color: "#E9F3FF",
+  //       time: "12.31",
+  //     },
+  //   ],
+  // },
 ];

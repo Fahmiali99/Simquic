@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { message } from "../../../Utils/message";
-import ActionsInbox from "../../Common/ActionsInbox";
+
+import MessageComp from "./Detail/MessageComp";
 
 function Chating({ postId }) {
   const [open, setOpen] = useState(false);
@@ -37,59 +38,19 @@ function Chating({ postId }) {
               {message.map((item) => {
                 const detail = item.inbox_chat;
                 return (
-                  <div key={item.id}>
-                    <div className=" text-center flex items-center">
-                      <div className=" border-b-2 w-2/5 border-primaryGray-500" />
-                      <h1 className="px-4">
-                        {item.status} {item.month} {item.date}
-                      </h1>
-                      <div className=" border-b-2 w-2/5 border-primaryGray-500" />
-                    </div>
-                    <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-                      {detail.slice(0, postId).map((item, idx) => (
-                        <div key={idx}>
-                          <span className="text-mm flex  font-bold py-2   text-gray-600">
-                            {item.name}
-                          </span>
-                          <div className="flex">
-                            <span
-                              className="px-4 py-2 rounded-lg inline-block  text-black "
-                              style={{ background: item.color }}
-                            >
-                              {item.body}
-                              <p className="text-ss py-1">{item.time}</p>
-                            </span>
-                            <ActionsInbox
-                              selectedMessageId={selectedMessageId}
-                              toggleOpen={toggleOpen}
-                              open={open}
-                              chatIdx={idx}
-                              dropdownRef={dropdownRef}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <MessageComp
+                    detail={detail}
+                    status={item.status}
+                    month={item.month}
+                    date={item.date}
+                    postId={postId}
+                    selectedMessageId={selectedMessageId}
+                    toggleOpen={toggleOpen}
+                    open={open}
+                    dropdownRef={dropdownRef}
+                  />
                 );
               })}
-            </div>
-            {/* From */}
-            <div className="chat-message">
-              <div className="flex items-end justify-end">
-                <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                  <div>
-                    <span className="text-mm flex justify-end font-bold py-2   text-gray-600">
-                      You
-                    </span>
-                    <span className="px-4 py-2 rounded-lg inline-block bg-stikerViolet text-black ">
-                      Any updates on this issue? I'm getting the same error when
-                      trying to install devtools. Thanks
-                      <p className="text-ss py-1">12:15</p>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           {/* From */}
