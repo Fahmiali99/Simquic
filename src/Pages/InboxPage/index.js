@@ -5,6 +5,7 @@ import { setInbox } from "../../Store/inbox";
 
 import AllInbox from "../../Components/Modules/Inbox/AllInbox";
 import Searching from "../../Components/Common/Searching";
+import Loading from "../../Components/Common/Loading";
 
 function InboxPage() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function InboxPage() {
             );
           })
         ) : (
-          <h1>Inbox is empty</h1>
+          <Loading />
         )}
       </div>
     </div>
