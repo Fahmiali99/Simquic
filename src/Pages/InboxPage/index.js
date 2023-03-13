@@ -25,7 +25,6 @@ function InboxPage() {
     });
     setSearch(filter);
   }
-
   return (
     <div className="  pt-6 px-8 bg-white border-2 rounded-lg  ">
       <Searching handleChange={filterData} />
