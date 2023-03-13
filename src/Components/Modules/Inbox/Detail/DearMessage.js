@@ -24,7 +24,10 @@ function DearMessage({
       <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
         {detail.slice(0, postId).map((item, idx) => (
           <div key={item.id}>
-            <span className="text-mm flex  font-bold py-2   text-gray-600">
+            <span
+              className="text-mm flex  font-bold py-2   text-gray-600"
+              style={{ color: item.hcolor }}
+            >
               {item.name}
             </span>
             <div className="flex">
