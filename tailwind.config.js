@@ -20,6 +20,7 @@ module.exports = {
       current: "currentColor",
       white: "#ffffff",
       grays: "#F2F2F2",
+      greens: "#0F8A69",
 
       // Primary
       primaryBlue: "#2F80ED",
