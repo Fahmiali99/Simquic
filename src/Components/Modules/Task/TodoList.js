@@ -13,29 +13,47 @@ function TodoList({
   delet,
   toggleDelete,
   dropdownRef,
+  handleCheckboxChange,
+  checkedItems,
+  selectedArrow,
 }) {
   return (
     <div>
       <div className="flex items-center  justify-between">
         <div className="">
           <input
-            id="default-checkbox"
+            checked={checkedItems.includes(idx)}
+            onChange={() => handleCheckboxChange(idx)}
+            id={`checkbox-${idx}`}
             type="checkbox"
-            value=""
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
+
           <label
-            htmlFor="default-checkbox"
+            htmlFor={`checkbox-${idx}`}
             className="ml-5 text-ll font-bold text-gray-900 dark:text-gray-300"
+            style={{
+              textDecoration: checkedItems.includes(idx)
+                ? "line-through"
+                : "none",
+              color: checkedItems.includes(idx) ? "gray" : "black",
+            }}
           >
             {name}
           </label>
         </div>
-        <div className=" ">
+        <div>
           <div className="flex items-center">
-            <p className="pr-4 text-indicatorRed ">2 Days Left</p>
+            <p
+              className="pr-4 text-indicatorRed "
+              style={{
+                display: checkedItems.includes(idx) ? "none" : "block",
+              }}
+            >
+              2 Days Left
+            </p>
             <p className="pr-4">12/06/2021</p>
-            <button onClick={() => toggleArrow(idx)} className="pr-4">
+            <button key={idx} onClick={() => toggleArrow(idx)} className="pr-4">
               <AiOutlineDown />
             </button>
             <button onClick={() => toggleDelete(idx)}>
@@ -66,7 +84,7 @@ function TodoList({
           </div>
         </div>
       </div>
-      {hide && selectedHideArrow === idx && (
+      {selectedArrow.includes(idx) && (
         <div className="ml-9 mt-4 pb-4">
           <div className="flex items-center pb-2 ">
             <div>

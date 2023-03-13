@@ -9,10 +9,13 @@ function TaskPage() {
   const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const { todolist } = useSelector((state) => state.todolist);
-  const [hide, setHide] = useState(false);
   const [delet, setDelet] = useState(false);
+  const [checkedItems, setCheckedItems] = useState(() => {
+    const storedItems = localStorage.getItem("checkedItems");
+    return storedItems ? JSON.parse(storedItems) : [];
+  });
+  const [selectedArrow, setSelectedArrow] = useState([]);
   const [selectedHideDot, setSelectedHideDot] = useState(null);
-  const [selectedHideArrow, setSelectedHideArrow] = useState(null);
 
   useEffect(() => {
     getTodoList().then((data) => {
@@ -20,15 +23,30 @@ function TaskPage() {
     });
   }, [dispatch]);
 
-  function toggleArrow(hideId) {
-    setSelectedHideArrow(hideId);
-    setHide(!hide);
-  }
+  const toggleArrow = (idx) => {
+    if (selectedArrow.includes(idx)) {
+      setSelectedArrow((e) => e.filter((selectedIdx) => selectedIdx !== idx));
+    } else {
+      setSelectedArrow((e) => e.concat(idx));
+    }
+  };
 
-  function toggleDelete(hideId) {
-    setSelectedHideDot(hideId);
+  const toggleDelete = (idx) => {
+    setSelectedHideDot(idx);
     setDelet(!delet);
-  }
+  };
+
+  const handleCheckboxChange = (idx) => {
+    if (checkedItems.includes(idx)) {
+      setCheckedItems(checkedItems.filter((item) => item !== idx));
+    } else {
+      setCheckedItems([...checkedItems, idx]);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("checkedItems", JSON.stringify(checkedItems));
+  }, [checkedItems]);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -48,6 +66,7 @@ function TaskPage() {
       style={{ height: "450px" }}
     >
       <Fitur />
+
       <div className="pt-[22px] ">
         {todolist.length ? (
           todolist
@@ -60,11 +79,12 @@ function TaskPage() {
                 body={item.body}
                 toggleArrow={toggleArrow}
                 selectedHideDot={selectedHideDot}
-                selectedHideArrow={selectedHideArrow}
-                hide={hide}
                 delet={delet}
                 toggleDelete={toggleDelete}
                 dropdownRef={dropdownRef}
+                handleCheckboxChange={handleCheckboxChange}
+                checkedItems={checkedItems}
+                selectedArrow={selectedArrow}
               />
             ))
         ) : (
