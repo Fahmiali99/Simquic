@@ -23,7 +23,7 @@ function FromMessage({
           chatIdx={idx}
           dropdownRef={dropdownRef}
         />
-        <span className="px-4 py-2  justify-end rounded-lg inline-block bg-stikerViolet text-black ">
+        <span className="px-4 py-2  justify-end rounded-lg inline-block bg-ChatPurple-200 text-black ">
           {text}
           <p className="text-ss py-1">{time}</p>
         </span>

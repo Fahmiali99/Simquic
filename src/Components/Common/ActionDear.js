@@ -35,7 +35,7 @@ function ActionDear({
           <div className="relative z-50">
             <div
               id="dropdown"
-              className={`z-10 border  bg-white divide-y divide-gray-100 rounded-lg  w-44 dark:bg-gray-700 absolute`}
+              className={`z-10 border  bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-700 absolute`}
             >
               {action.map((item, idx) => (
                 <div key={idx} className="py-2">
