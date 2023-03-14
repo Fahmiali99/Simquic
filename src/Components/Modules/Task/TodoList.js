@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineDown, AiOutlineClockCircle } from "react-icons/ai";
 import { HiDotsHorizontal, HiOutlinePencil } from "react-icons/hi";
-
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import { AiOutlineCalendar } from "react-icons/ai";
 function TodoList({
   idx,
   name,
@@ -14,7 +16,9 @@ function TodoList({
   handleCheckboxChange,
   checkedItems,
   selectedArrow,
+  handleDelete,
 }) {
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <div>
       <div className="flex items-center  justify-between">
@@ -68,14 +72,12 @@ function TodoList({
                       className="py-2 text-sm text-indicatorRed"
                       aria-labelledby="dropdownDefaultButton"
                     >
-                      <li>
-                        <a
-                          href="/"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Delete
-                        </a>
-                      </li>
+                      <button
+                        onClick={() => handleDelete(idx)}
+                        className="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
+                      >
+                        <span className="flex justify-start">Delete</span>
+                      </button>
                     </ul>
                   </div>
                 </div>
@@ -91,10 +93,20 @@ function TodoList({
               <AiOutlineClockCircle className="text-ll mr-2 text-primaryBlue" />
             </div>
 
-            <input
+            {/* <input
               type="date"
+              value="2018-07-22"
               className="rounded-lg border-2 border-gray-400"
-            />
+            /> */}
+            <div className="date-picker flex items-center relative">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
+                className=" rounded-lg"
+              />
+              <AiOutlineCalendar className="icon absolute right-3" />
+            </div>
           </div>
           <div className="flex ">
             <div>

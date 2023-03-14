@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTodoList } from "../../Store/todolist";
+import { setDeleteTodoItem, setTodoList } from "../../Store/todolist";
 import { getTodoList } from "../../Lib/fetchApiTodo";
 import Fitur from "../../Components/Modules/Task/Fitur";
 import TodoList from "../../Components/Modules/Task/TodoList";
@@ -44,6 +44,11 @@ function TaskPage() {
     }
   };
 
+  const handleDelete = (idx) => {
+    const newTodoList = todolist.filter((item) => item.id !== idx);
+    dispatch(setDeleteTodoItem(newTodoList));
+  };
+
   useEffect(() => {
     localStorage.setItem("checkedItems", JSON.stringify(checkedItems));
   }, [checkedItems]);
@@ -63,17 +68,17 @@ function TaskPage() {
   return (
     <div
       className="border-2 rounded-lg bg-white  py-6 px-8 overflow-x-auto"
-      style={{ height: "450px" }}
+      style={{ height: "500px" }}
     >
       <Fitur />
 
       <div className="pt-[22px] ">
         {todolist.length ? (
           todolist
-            .slice(0, 3)
-            .map((item, idx) => (
+            .slice(0, 1)
+            .map((item) => (
               <TodoList
-                key={idx}
+                key={item.id}
                 idx={item.id}
                 name={item.title}
                 body={item.body}
@@ -85,6 +90,7 @@ function TaskPage() {
                 handleCheckboxChange={handleCheckboxChange}
                 checkedItems={checkedItems}
                 selectedArrow={selectedArrow}
+                handleDelete={handleDelete}
               />
             ))
         ) : (
