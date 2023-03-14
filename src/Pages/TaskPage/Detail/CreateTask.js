@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDeleteTodoItem, setTodoList } from "../../Store/todolist";
-import { getTodoList } from "../../Lib/fetchApiTodo";
-import Fitur from "../../Components/Modules/Task/Fitur";
-import TodoList from "../../Components/Modules/Task/TodoList";
-import CreateTask from "./Detail/CreateTask";
+import { getTodoList } from "../../../Lib/fetchApiTodo";
+import { setDeleteTodoItem, setTodoList } from "../../../Store/todolist";
+import CreateTodo from "../../../Components/Modules/Task/CreateTodo";
 
-function TaskPage() {
+function CreateTask({ openTask, toggleOpenTask }) {
   const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const { todolist } = useSelector((state) => state.todolist);
   const [delet, setDelet] = useState(false);
-  const [openTask, setOpenTask] = useState(false);
+
   const [checkedItems, setCheckedItems] = useState(() => {
     const storedItems = localStorage.getItem("checkedItems");
     return storedItems ? JSON.parse(storedItems) : [];
@@ -36,10 +34,6 @@ function TaskPage() {
   const toggleDelete = (idx) => {
     setSelectedHideDot(idx);
     setDelet(!delet);
-  };
-
-  const toggleOpenTask = () => {
-    setOpenTask(!openTask);
   };
 
   const handleCheckboxChange = (idx) => {
@@ -72,40 +66,31 @@ function TaskPage() {
   }, [dropdownRef]);
 
   return (
-    <div
-      className="border-2 rounded-lg bg-white  py-6 px-8 overflow-x-auto"
-      style={{ height: "500px" }}
-    >
-      <Fitur toggleOpenTask={toggleOpenTask} />
-
-      <div className="pt-[22px] ">
-        {todolist.length ? (
-          todolist
-            .slice(0, 1)
-            .map((item) => (
-              <TodoList
-                key={item.id}
-                idx={item.id}
-                name={item.title}
-                body={item.body}
-                toggleArrow={toggleArrow}
-                selectedHideDot={selectedHideDot}
-                delet={delet}
-                toggleDelete={toggleDelete}
-                dropdownRef={dropdownRef}
-                handleCheckboxChange={handleCheckboxChange}
-                checkedItems={checkedItems}
-                selectedArrow={selectedArrow}
-                handleDelete={handleDelete}
-              />
-            ))
-        ) : (
-          <h1>Data is null</h1>
-        )}
-      </div>
-      <CreateTask openTask={openTask} />
+    <div className="pt-[22px] ">
+      {todolist.length ? (
+        todolist
+          .slice(0, 1)
+          .map((item) => (
+            <CreateTodo
+              key={item.id}
+              idx={item.id}
+              toggleArrow={toggleArrow}
+              selectedHideDot={selectedHideDot}
+              delet={delet}
+              toggleDelete={toggleDelete}
+              dropdownRef={dropdownRef}
+              handleCheckboxChange={handleCheckboxChange}
+              checkedItems={checkedItems}
+              selectedArrow={selectedArrow}
+              handleDelete={handleDelete}
+              openTask={openTask}
+            />
+          ))
+      ) : (
+        <h1>Data is null</h1>
+      )}
     </div>
   );
 }
 
-export default TaskPage;
+export default CreateTask;

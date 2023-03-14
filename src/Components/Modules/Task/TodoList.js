@@ -20,8 +20,8 @@ function TodoList({
 }) {
   const [startDate, setStartDate] = useState(new Date());
   return (
-    <div>
-      <div className="flex items-center  justify-between">
+    <div className="border-b border-primaryGray-500">
+      <div className="flex items-center  justify-between ">
         <div className="">
           <input
             checked={checkedItems.includes(idx)}
@@ -93,11 +93,6 @@ function TodoList({
               <AiOutlineClockCircle className="text-ll mr-2 text-primaryBlue" />
             </div>
 
-            {/* <input
-              type="date"
-              value="2018-07-22"
-              className="rounded-lg border-2 border-gray-400"
-            /> */}
             <div className="date-picker flex items-center relative">
               <DatePicker
                 selected={startDate}

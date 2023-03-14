@@ -17,7 +17,7 @@ function SelectedItem({ openToggle, open, dropdownRef, selectedHide }) {
         onClick={openToggle}
         id="dropdownDividerButton"
         data-dropdown-toggle="dropdownDivider"
-        className="  bg-white hover:bg-primaryGray-200 text-black border-2 border-primaryGray-500 hover:primaryGray-500focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center "
+        className="  bg-white hover:bg-primaryGray-200 text-black border border-primaryGray-500 hover:primaryGray-500focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center "
         type="button"
       >
         My Tasks
