@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SelectedItem from "./Detail/SelectedItem";
 
-function Fitur() {
+function Fitur({ handleSelect }) {
   const dropdownRef = useRef(null);
   const [openFitur, setOpenFitur] = useState(false);
   const [selectedHide, setSelectedHide] = useState(null);
@@ -26,12 +26,14 @@ function Fitur() {
     <div className="flex justify-between items-center">
       <div>
         <SelectedItem
+          handleSelect={handleSelect}
           openToggle={openToggle}
           open={openFitur}
           selectedHide={selectedHide}
           dropdownRef={dropdownRef}
         />
       </div>
+
       <div>
         <button
           type="button"

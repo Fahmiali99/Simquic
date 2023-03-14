@@ -6,10 +6,8 @@ function TodoList({
   idx,
   name,
   body,
-  hide,
   toggleArrow,
   selectedHideDot,
-  selectedHideArrow,
   delet,
   toggleDelete,
   dropdownRef,
@@ -61,23 +59,25 @@ function TodoList({
             </button>
             <div ref={dropdownRef}>
               {delet && selectedHideDot === idx && (
-                <div
-                  id="dropdown"
-                  className="fixed z-10 bg-white divide-y divide-gray-100 rounded-lg border w-44 dark:bg-gray-700"
-                >
-                  <ul
-                    className="py-2 text-sm text-indicatorRed"
-                    aria-labelledby="dropdownDefaultButton"
+                <div className="relative">
+                  <div
+                    id="dropdown"
+                    className=" absolute right-5 top-3 z-10 bg-white divide-y divide-gray-100 rounded-lg border w-44 dark:bg-gray-700"
                   >
-                    <li>
-                      <a
-                        href="/"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Delete
-                      </a>
-                    </li>
-                  </ul>
+                    <ul
+                      className="py-2 text-sm text-indicatorRed"
+                      aria-labelledby="dropdownDefaultButton"
+                    >
+                      <li>
+                        <a
+                          href="/"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>

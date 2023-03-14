@@ -4,15 +4,15 @@ function SelectedItem({ openToggle, open, dropdownRef, selectedHide }) {
   const select = [
     {
       name: "Personal Errands",
-      href: "/",
+      value: "/",
     },
     {
       name: "Urgent To-Do",
-      href: "/",
+      value: "/",
     },
   ];
   return (
-    <>
+    <div>
       <button
         onClick={openToggle}
         id="dropdownDividerButton"
@@ -56,7 +56,7 @@ function SelectedItem({ openToggle, open, dropdownRef, selectedHide }) {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
