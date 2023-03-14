@@ -19,7 +19,7 @@ function InChating() {
             <h1 className=" text-primaryBlue text-ll font-bold">
               {chat?.name}
             </h1>
-            <h1 className=" text-ss ">{chat.postId} Participants</h1>
+            <h1 className=" text-ss ">{chat?.postId} Participants</h1>
           </div>
         </div>
         <div className="">
@@ -27,7 +27,7 @@ function InChating() {
         </div>
       </div>
       <div className="  rounded-lg pt-6 px-8">
-        <Chating chat={chat} postId={chat.postId} />
+        <Chating chat={chat} postId={chat?.postId} />
       </div>
     </div>
   );
