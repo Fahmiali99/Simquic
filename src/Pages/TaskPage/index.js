@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDeleteTodoItem, setTodoList } from "../../Store/todolist";
-import { getTodoList } from "../../Lib/fetchApiTodo";
+
 import Fitur from "../../Components/Modules/Task/Fitur";
 import TodoList from "../../Components/Modules/Task/TodoList";
 import CreateTask from "./Detail/CreateTask";
+import { getTodoList } from "../../Lib/fetchApiTodo";
+import Loading from "../../Components/Common/Loading";
 
 function TaskPage() {
   const dispatch = useDispatch();
@@ -72,22 +74,23 @@ function TaskPage() {
   }, [dropdownRef]);
 
   return (
-    <div
-      className="border-2 rounded-lg bg-white  py-6 px-8 overflow-x-auto"
-      style={{ height: "500px" }}
-    >
+    <div className="bg-white py-6 rounded-lg">
       <Fitur toggleOpenTask={toggleOpenTask} />
 
-      <div className="pt-[22px] ">
-        {todolist.length ? (
-          todolist
-            .slice(0, 1)
-            .map((item) => (
+      <div
+        id="messages"
+        className="flex flex-col space-y-4  overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+        style={{ height: "400px" }}
+      >
+        <div className=" px-8 ">
+          {todolist.length ? (
+            todolist.map((item) => (
               <TodoList
                 key={item.id}
                 idx={item.id}
                 name={item.title}
                 body={item.body}
+                date={item.date}
                 toggleArrow={toggleArrow}
                 selectedHideDot={selectedHideDot}
                 delet={delet}
@@ -99,11 +102,14 @@ function TaskPage() {
                 handleDelete={handleDelete}
               />
             ))
-        ) : (
-          <h1>Data is null</h1>
-        )}
+          ) : (
+            <Loading status={"Task List"} />
+          )}
+        </div>
+        <div className=" px-8 ">
+          <CreateTask openTask={openTask} />
+        </div>
       </div>
-      <CreateTask openTask={openTask} />
     </div>
   );
 }

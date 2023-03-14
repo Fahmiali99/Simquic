@@ -1,6 +1,6 @@
 import React from "react";
 
-function Loading() {
+function Loading({ status }) {
   return (
     <>
       <div className=" flex justify-center items-center h-full" role="status">
@@ -24,7 +24,7 @@ function Loading() {
             </svg>
           </div>
           <div className="flex justify-center">
-            <h1 className=" text-center py-3 text-mm">Loading Chats ...</h1>
+            <h1 className=" text-center py-3 text-mm">Loading {status} ...</h1>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ function TodoList({
   idx,
   name,
   body,
+  date,
   toggleArrow,
   selectedHideDot,
   delet,
@@ -21,8 +22,8 @@ function TodoList({
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="border-b border-primaryGray-500">
-      <div className="flex items-center  justify-between ">
-        <div className="">
+      <div className="flex items-center  justify-between py-[22px] ">
+        <div className="flex items-center">
           <input
             checked={checkedItems.includes(idx)}
             onChange={() => handleCheckboxChange(idx)}

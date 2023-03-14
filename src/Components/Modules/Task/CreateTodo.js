@@ -4,6 +4,9 @@ import { HiDotsHorizontal, HiOutlinePencil } from "react-icons/hi";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { AiOutlineCalendar } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { setTodoList } from "../../../Store/todolist";
+
 function CreateTodo({
   idx,
   toggleArrow,
@@ -18,10 +21,62 @@ function CreateTodo({
   openTask,
 }) {
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const { todolist } = useSelector((state) => state.todolist);
+
+  const [inputTodo, setInputTodo] = useState({
+    title: "",
+    body: "",
+    date: "",
+  });
+
+  const handleChangeTodo = (e) => {
+    const { name, value } = e.target;
+    setInputTodo({ ...inputTodo, [name]: value });
+  };
+
+  const handleDateChange = (date) => {
+    setStartDate(date);
+    setInputTodo({ ...inputTodo, date: date });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newTodoList = [...todolist];
+
+    const existingTodo = newTodoList.find(
+      (todo) => todo.title === inputTodo.title && todo.body === inputTodo.body
+    );
+
+    if (existingTodo) {
+      existingTodo.title = inputTodo.title;
+      existingTodo.body = inputTodo.body;
+      existingTodo.date = inputTodo.date;
+    } else {
+      let lastId = newTodoList[newTodoList.length - 1].id;
+      const newTodo = {
+        id: ++lastId,
+        title: inputTodo.title,
+        body: inputTodo.body,
+        date: inputTodo.date,
+      };
+      newTodoList.push(newTodo);
+    }
+
+    dispatch(setTodoList(newTodoList));
+
+    setInputTodo({
+      title: "",
+      body: "",
+      date: "",
+    });
+  };
+
   return (
-    <div>
-      <div id="dropdown" className={` ${openTask ? "hidden" : "block"}`}>
-        <div className="border-b border-primaryGray-500">
+    <div id="dropdown" className={` ${openTask ? "hidden" : "block"}`}>
+      <form onSubmit={handleSubmit}>
+        <div className="border-b border-primaryGray-500 pb-[22px] pt-3">
           <div className="flex items-center  justify-between ">
             <div className=" flex items-center">
               <input
@@ -35,6 +90,9 @@ function CreateTodo({
               <input
                 type="text"
                 className="ml-5 w-96 mb-1 bg-gray-50 border border-primaryGray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  "
+                name="title"
+                value={inputTodo.title}
+                onChange={handleChangeTodo}
                 required
               />
             </div>
@@ -85,7 +143,7 @@ function CreateTodo({
                 <div className="date-picker flex items-center relative">
                   <DatePicker
                     selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    onChange={handleDateChange}
                     dateFormat="dd/MM/yyyy"
                     className=" rounded-lg"
                   />
@@ -101,12 +159,16 @@ function CreateTodo({
                   type="text"
                   className="h-0 border-none outline-transparent outline-none"
                   placeholder="typing ..."
+                  name="body"
+                  value={inputTodo.body}
+                  onChange={handleChangeTodo}
+                  required
                 />
               </div>
             </div>
           )}
         </div>
-      </div>
+      </form>
     </div>
   );
 }

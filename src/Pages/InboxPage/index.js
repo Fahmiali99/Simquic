@@ -42,7 +42,7 @@ function InboxPage() {
             );
           })
         ) : (
-          <Loading />
+          <Loading status={"Chats"} />
         )}
       </div>
     </div>

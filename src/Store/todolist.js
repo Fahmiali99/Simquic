@@ -2,6 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todolist: [],
+  todolistForm: {
+    title: "",
+    body: "",
+  },
 };
 
 export const todolist = createSlice({
@@ -15,8 +19,12 @@ export const todolist = createSlice({
       const idx = action.payload;
       state.todolist.splice(idx, 1);
     },
+    setFormTodoList: (state, action) => {
+      state.todolistForm = action.payload;
+    },
   },
 });
 
-export const { setTodoList, setDeleteTodoItem } = todolist.actions;
+export const { setTodoList, setDeleteTodoItem, setFormTodoList } =
+  todolist.actions;
 export default todolist.reducer;

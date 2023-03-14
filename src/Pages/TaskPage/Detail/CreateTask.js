@@ -4,7 +4,7 @@ import { getTodoList } from "../../../Lib/fetchApiTodo";
 import { setDeleteTodoItem, setTodoList } from "../../../Store/todolist";
 import CreateTodo from "../../../Components/Modules/Task/CreateTodo";
 
-function CreateTask({ openTask, toggleOpenTask }) {
+function CreateTask({ openTask }) {
   const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const { todolist } = useSelector((state) => state.todolist);
@@ -66,30 +66,20 @@ function CreateTask({ openTask, toggleOpenTask }) {
   }, [dropdownRef]);
 
   return (
-    <div className="pt-[22px] ">
-      {todolist.length ? (
-        todolist
-          .slice(0, 1)
-          .map((item) => (
-            <CreateTodo
-              key={item.id}
-              idx={item.id}
-              toggleArrow={toggleArrow}
-              selectedHideDot={selectedHideDot}
-              delet={delet}
-              toggleDelete={toggleDelete}
-              dropdownRef={dropdownRef}
-              handleCheckboxChange={handleCheckboxChange}
-              checkedItems={checkedItems}
-              selectedArrow={selectedArrow}
-              handleDelete={handleDelete}
-              openTask={openTask}
-            />
-          ))
-      ) : (
-        <h1>Data is null</h1>
-      )}
-    </div>
+    <>
+      <CreateTodo
+        toggleArrow={toggleArrow}
+        selectedHideDot={selectedHideDot}
+        delet={delet}
+        toggleDelete={toggleDelete}
+        dropdownRef={dropdownRef}
+        handleCheckboxChange={handleCheckboxChange}
+        checkedItems={checkedItems}
+        selectedArrow={selectedArrow}
+        handleDelete={handleDelete}
+        openTask={openTask}
+      />
+    </>
   );
 }
 
