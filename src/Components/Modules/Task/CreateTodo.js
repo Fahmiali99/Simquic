@@ -20,7 +20,7 @@ function CreateTodo({
   handleDelete,
   openTask,
 }) {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const dispatch = useDispatch();
   const { todolist } = useSelector((state) => state.todolist);
 
@@ -76,7 +76,7 @@ function CreateTodo({
   return (
     <div id="dropdown" className={` ${openTask ? "hidden" : "block"}`}>
       <form onSubmit={handleSubmit}>
-        <div className="border-b border-primaryGray-500 pb-[22px] pt-3">
+        <div className="border-b border-primaryGray-500 py-[22px] ">
           <div className="flex items-center  justify-between ">
             <div className=" flex items-center">
               <input
@@ -93,6 +93,7 @@ function CreateTodo({
                 name="title"
                 value={inputTodo.title}
                 onChange={handleChangeTodo}
+                placeholder="Type Task Title"
                 required
               />
             </div>
@@ -145,8 +146,10 @@ function CreateTodo({
                     selected={startDate}
                     onChange={handleDateChange}
                     dateFormat="dd/MM/yyyy"
-                    className=" rounded-lg"
+                    className="rounded-lg"
+                    placeholderText={startDate ? undefined : "Set Date"}
                   />
+
                   <AiOutlineCalendar className="icon absolute right-3" />
                 </div>
               </div>
@@ -157,8 +160,8 @@ function CreateTodo({
 
                 <input
                   type="text"
-                  className="h-0 border-none outline-transparent outline-none"
-                  placeholder="typing ..."
+                  className="h-0 border-none focus:ring-transparent"
+                  placeholder="No Description"
                   name="body"
                   value={inputTodo.body}
                   onChange={handleChangeTodo}

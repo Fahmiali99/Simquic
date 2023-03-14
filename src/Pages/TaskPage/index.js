@@ -84,30 +84,30 @@ function TaskPage() {
       >
         <div className=" px-8 ">
           {todolist.length ? (
-            todolist.map((item) => (
-              <TodoList
-                key={item.id}
-                idx={item.id}
-                name={item.title}
-                body={item.body}
-                date={item.date}
-                toggleArrow={toggleArrow}
-                selectedHideDot={selectedHideDot}
-                delet={delet}
-                toggleDelete={toggleDelete}
-                dropdownRef={dropdownRef}
-                handleCheckboxChange={handleCheckboxChange}
-                checkedItems={checkedItems}
-                selectedArrow={selectedArrow}
-                handleDelete={handleDelete}
-              />
-            ))
+            <div>
+              {todolist.map((item) => (
+                <TodoList
+                  key={item.id}
+                  idx={item.id}
+                  name={item.title}
+                  body={item.body}
+                  date={item.date}
+                  toggleArrow={toggleArrow}
+                  selectedHideDot={selectedHideDot}
+                  delet={delet}
+                  toggleDelete={toggleDelete}
+                  dropdownRef={dropdownRef}
+                  handleCheckboxChange={handleCheckboxChange}
+                  checkedItems={checkedItems}
+                  selectedArrow={selectedArrow}
+                  handleDelete={handleDelete}
+                />
+              ))}
+              <CreateTask openTask={openTask} />
+            </div>
           ) : (
             <Loading status={"Task List"} />
           )}
-        </div>
-        <div className=" px-8 ">
-          <CreateTask openTask={openTask} />
         </div>
       </div>
     </div>
