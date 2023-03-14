@@ -104,6 +104,7 @@ function TodoList({
                   onChange={(date) => setStartDate(date)}
                   dateFormat="dd/MM/yyyy"
                   className=" rounded-lg"
+                  required
                 />
                 <AiOutlineCalendar className="icon absolute right-3" />
               </div>

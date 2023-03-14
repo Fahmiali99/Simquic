@@ -148,6 +148,7 @@ function CreateTodo({
                     dateFormat="dd/MM/yyyy"
                     className="rounded-lg"
                     placeholderText={startDate ? undefined : "Set Date"}
+                    required
                   />
 
                   <AiOutlineCalendar className="icon absolute right-3" />

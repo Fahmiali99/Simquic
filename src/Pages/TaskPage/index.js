@@ -82,7 +82,7 @@ function TaskPage() {
         className="flex flex-col space-y-4  overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
         style={{ height: "400px" }}
       >
-        <div className=" px-8 ">
+        <div className="h-full px-8 ">
           {todolist.length ? (
             <div>
               {todolist.map((item) => (
