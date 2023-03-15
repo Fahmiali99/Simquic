@@ -7,7 +7,7 @@ function LandingPage() {
         className="overflow-y-auto flex items-center"
         style={{ height: "472px" }}
       >
-        <h1 className=" text-8xl font-bold">
+        <h1 className=" text-8xl text-center font-bold">
           Simple
           <span className="block">Quicks</span>
         </h1>

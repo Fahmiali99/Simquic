@@ -6,6 +6,7 @@ import InboxPage from "./Pages/InboxPage";
 import TaskPage from "./Pages/TaskPage";
 import { useState } from "react";
 import InChating from "./Pages/InboxPage/Detail/InChating";
+import NotFoundPage from "./Components/Common/NotFoundPage";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ function App() {
         <div className="lg:mx-64  ">
           <div className="">
             <Routes>
+              <Route path="*" element={<NotFoundPage />} />
               <Route path="/" element={<LandingPage />} />
               <Route exact path="/inbox" element={<InboxPage />} />
               <Route path="/inbox/:id" element={<InChating />} />
