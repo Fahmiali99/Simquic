@@ -74,15 +74,15 @@ function TaskPage() {
   }, [dropdownRef]);
 
   return (
-    <div className="  pt-6 px-8 bg-white border-2 rounded-lg min-w-max ">
+    <div className="  pt-6  bg-white border-2 rounded-lg min-w-max ">
       <Fitur toggleOpenTask={toggleOpenTask} />
 
       <div
         id="messages"
         className="overflow-y-auto"
-        style={{ height: "430px" }}
+        style={{ height: "450px" }}
       >
-        <div className="h-full  ">
+        <div className="h-full px-8 ">
           {todolist.length ? (
             <div>
               {todolist.map((item) => (
