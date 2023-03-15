@@ -19,10 +19,9 @@ function Footer({ toggleOpen, open }) {
               {fitur?.map((item, idx) => (
                 <li key={idx} className=" mr-2 ">
                   <button onClick={() => setActiveItem(idx)}>
-                    {" "}
                     <NavLink
                       to={item.href}
-                      className={`  rounded-full w-16 h-16 flex justify-center items-center ${
+                      className={`  rounded-full w-16 h-16 flex justify-center items-center hover:bg-white duration-200 ${
                         activeItem === idx
                           ? `${" bg-current"}`
                           : " bg-grays text-white "
@@ -47,7 +46,7 @@ function Footer({ toggleOpen, open }) {
         <div>
           <button
             onClick={toggleOpen}
-            className=" outline-none rounded-full bg-primaryBlue text-white w-16 h-16 flex justify-center items-center"
+            className=" outline-none rounded-full bg-primaryBlue hover:bg-blue-500 text-white w-16 h-16 flex justify-center items-center duration-200"
             type="button"
           >
             <MdElectricBolt className=" text-2xl" />
