@@ -23,7 +23,7 @@ function Fitur({ handleSelect, toggleOpenTask }) {
     };
   }, [dropdownRef]);
   return (
-    <div className=" px-8 ">
+    <div className="  ">
       <div className=" flex justify-between items-center w-full     ">
         <div>
           <SelectedItem

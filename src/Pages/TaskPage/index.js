@@ -82,7 +82,7 @@ function TaskPage() {
         className="overflow-y-auto"
         style={{ height: "430px" }}
       >
-        <div className="h-full px-8 ">
+        <div className="h-full  ">
           {todolist.length ? (
             <div>
               {todolist.map((item) => (
