@@ -26,7 +26,7 @@ function InboxPage() {
     setSearch(filter);
   }
   return (
-    <div className="  pt-6 px-8 bg-white border-2 rounded-lg  ">
+    <div className="  pt-6 px-8 bg-white border-2 rounded-lg min-w-max ">
       <Searching handleChange={filterData} />
       <div className="overflow-y-auto" style={{ height: "450px" }}>
         {search?.length ? (

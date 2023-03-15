@@ -18,16 +18,18 @@ function App() {
   return (
     <div className=" bg-primaryGray-900 h-screen grid items-center">
       <div className="  sm:h-auto container mx-auto bg-slate-200 ">
-        <div className="lg:mx-64  ">
-          <div className="">
-            <Routes>
-              <Route path="*" element={<NotFoundPage />} />
-              <Route path="/" element={<LandingPage />} />
-              <Route exact path="/inbox" element={<InboxPage />} />
-              <Route path="/inbox/:id" element={<InChating />} />
-              <Route path="/task" element={<TaskPage />} />
-            </Routes>
-            <Footer toggleOpen={toggleOpen} open={open} />
+        <div className="mx-5 lg:mx-64  ">
+          <div>
+            <div>
+              <Routes>
+                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route exact path="/inbox" element={<InboxPage />} />
+                <Route path="/inbox/:id" element={<InChating />} />
+                <Route path="/task" element={<TaskPage />} />
+              </Routes>
+              <Footer toggleOpen={toggleOpen} open={open} />
+            </div>
           </div>
         </div>
       </div>

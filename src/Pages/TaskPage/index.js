@@ -74,12 +74,12 @@ function TaskPage() {
   }, [dropdownRef]);
 
   return (
-    <div className="bg-white py-6 rounded-lg">
+    <div className="  pt-6 px-8 bg-white border-2 rounded-lg min-w-max ">
       <Fitur toggleOpenTask={toggleOpenTask} />
 
       <div
         id="messages"
-        className="flex flex-col space-y-4  overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+        className="overflow-y-auto"
         style={{ height: "430px" }}
       >
         <div className="h-full px-8 ">

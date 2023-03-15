@@ -7,7 +7,7 @@ function Footer({ toggleOpen, open }) {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
-    <div className=" flex items-center justify-end pb-6 px-8 pt-6">
+    <div className=" flex items-center justify-end pb-6  pt-6">
       <div className=" flex items-center ">
         {open && (
           <div
@@ -21,7 +21,7 @@ function Footer({ toggleOpen, open }) {
                   <button onClick={() => setActiveItem(idx)}>
                     <NavLink
                       to={item.href}
-                      className={`  rounded-full w-16 h-16 flex justify-center items-center hover:bg-white duration-200 ${
+                      className={`  rounded-full w-16 h-16 flex justify-center items-center ${
                         activeItem === idx
                           ? `${" bg-current"}`
                           : " bg-grays text-white "
