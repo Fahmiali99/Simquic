@@ -23,7 +23,9 @@ function InChating() {
           </div>
         </div>
         <div className="">
-          <GrClose className="text-xl" />
+          <a href="/">
+            <GrClose className="text-xl" />
+          </a>
         </div>
       </div>
       <div className="  rounded-lg pt-6 px-8">
