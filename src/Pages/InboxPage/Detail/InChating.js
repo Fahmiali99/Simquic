@@ -1,9 +1,9 @@
 import React from "react";
 import { GrClose } from "react-icons/gr";
-import BackPage from "../../../../Components/Common/BackPage";
+import BackPage from "../../../Components/Common/BackPage";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Chating from "../../../../Components/Modules/Inbox/Chating";
+import Chating from "../../../Components/Modules/Inbox/Chating";
 
 function InChating() {
   const { id } = useParams();
